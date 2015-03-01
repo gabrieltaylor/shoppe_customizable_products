@@ -16,8 +16,8 @@ module ShoppeCustomizableProducts
     end
 
     config.to_prepare do
-      Dir.glob(Rails.root + "app/models/**/*_decorator*.rb").each do |c|
-        require_dependency(c)
+      Dir.glob(File.join(File.dirname(__FILE__), "../../app/**/*_decorator*.rb")) do |c|
+        Rails.configuration.cache_classes ? require(c) : load(c)
       end
     end
 
