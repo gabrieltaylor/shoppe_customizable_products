@@ -22,14 +22,13 @@ module ShoppeCustomizableProducts
       end
     end
 
-    # Don't copy migrations to main app rather just include them from the gem
-    initializer :append_migrations do |app|
+    initializer 'shoppe_customizable_products.initialize' do |app|
+      # Load our migrations into the application's db/migrate path
       unless app.root.to_s.match root.to_s
         config.paths["db/migrate"].expanded.each do |expanded_path|
           app.config.paths["db/migrate"] << expanded_path
         end
       end
     end
-
   end
 end
