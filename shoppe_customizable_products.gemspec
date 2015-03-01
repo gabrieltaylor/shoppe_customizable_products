@@ -1,23 +1,23 @@
-# coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'shoppe_customizable_products/version'
+$:.push File.expand_path("../lib", __FILE__)
 
-Gem::Specification.new do |spec|
-  spec.name          = "shoppe_customizable_products"
-  spec.version       = ShoppeCustomizableProducts::VERSION
-  spec.authors       = ["Gabriel Taylor-Russ"]
-  spec.email         = ["gabriel.taylor.russ@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
-  spec.license       = "MIT"
+# Maintain your gem's version:
+require "shoppe_customizable_products/version"
 
-  spec.files         = `git ls-files -z`.split("\x0")
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  spec.require_paths = ["lib"]
+# Describe your gem and declare its dependencies:
+Gem::Specification.new do |s|
+  s.name        = "shoppe_customizable_products"
+  s.version     = ShoppeCustomizableProducts::VERSION
+  s.authors     = ["Gabriel Taylor-Russ"]
+  s.email       = ["gabriel.taylor.russ@gmail.com"]
+  s.homepage    = "TODO"
+  s.summary     = "TODO: Summary of ShoppeCustomizableProducts."
+  s.description = "TODO: Description of ShoppeCustomizableProducts."
+  s.license     = "MIT"
 
-  spec.add_development_dependency "bundler", "~> 1.7"
-  spec.add_development_dependency "rake", "~> 10.0"
+  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.test_files = Dir["test/**/*"]
+
+  s.add_dependency "rails", "~> 4.2.0"
+
+  s.add_development_dependency "sqlite3"
 end
