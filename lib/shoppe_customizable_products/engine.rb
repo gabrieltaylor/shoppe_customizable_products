@@ -3,7 +3,24 @@ module ShoppeCustomizableProducts
     engine_name 'shoppe_customizable_products'
     isolate_namespace ShoppeCustomizableProducts
 
-    config.autoload_paths += %W(#{config.root}/lib)
+    if Shoppe.respond_to?(:root)
+      config.autoload_paths << File.join(Shoppe.root, 'lib')
+    end
+
+    # We don't want any automatic generators in the engine.
+    config.generators do |g|
+      g.orm             :active_record
+      g.test_framework  :rspec
+      g.stylesheets     false
+      g.javascripts     false
+      g.helper          false
+    end
+
+    config.to_prepare do
+      Dir.glob(Rails.root + "app/decorators/**/*_decorator*.rb").each do |c|
+        require_dependency(c)
+      end
+    end
 
     # Don't copy migrations to main app rather just include them from the gem
     initializer :append_migrations do |app|
@@ -14,17 +31,5 @@ module ShoppeCustomizableProducts
       end
     end
 
-    # use rspec for tests
-    config.generators do |g|
-      g.test_framework :rspec
-    end
-
-    def self.activate
-      Dir.glob(File.join(File.dirname(__FILE__), "../../app/**/*_decorator*.rb")) do |c|
-        Rails.configuration.cache_classes ? require(c) : load(c)
-      end
-    end
-
-    config.to_prepare &method(:activate).to_proc
   end
 end
