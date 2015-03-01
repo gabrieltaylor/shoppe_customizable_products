@@ -1,4 +1,4 @@
-class AddCustomisationType < ActiveRecord::Migration
+class AddCustomizationType < ActiveRecord::Migration
   def change
     create_table "shoppe_customization_types", force: true do |t|
       t.integer  "product_id"
