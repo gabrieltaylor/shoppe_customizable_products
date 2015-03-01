@@ -1,6 +1,5 @@
 module ShoppeCustomizableProducts
   class Engine < Rails::Engine
-    engine_name 'shoppe_customizable_products'
     isolate_namespace ShoppeCustomizableProducts
 
     if ShoppeCustomizableProducts.respond_to?(:root)
