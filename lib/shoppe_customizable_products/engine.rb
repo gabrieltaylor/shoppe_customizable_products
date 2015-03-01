@@ -3,8 +3,8 @@ module ShoppeCustomizableProducts
     engine_name 'shoppe_customizable_products'
     isolate_namespace ShoppeCustomizableProducts
 
-    if Shoppe.respond_to?(:root)
-      config.autoload_paths << File.join(Shoppe.root, 'lib')
+    if ShoppeCustomizableProducts.respond_to?(:root)
+      config.autoload_paths << File.join(ShoppeCustomizableProducts.root, 'lib')
     end
 
     # We don't want any automatic generators in the engine.
@@ -17,7 +17,7 @@ module ShoppeCustomizableProducts
     end
 
     config.to_prepare do
-      Dir.glob(Rails.root + "app/decorators/**/*_decorator*.rb").each do |c|
+      Dir.glob(Rails.root + "app/models/**/*_decorator*.rb").each do |c|
         require_dependency(c)
       end
     end
