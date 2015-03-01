@@ -1,5 +1,6 @@
 module Shoppe
   class CustomizationType < ActiveRecord::Base
+    self.table_name = 'shoppe_customization_type'
     belongs_to :product
     has_many :customization_values, :dependent => :destroy
 
