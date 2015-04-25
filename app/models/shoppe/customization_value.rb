@@ -2,7 +2,7 @@ module Shoppe
   class CustomizationValue < ActiveRecord::Base
     self.table_name = 'shoppe_customization_values'
     belongs_to :customization_type, :class_name => 'Shoppe::CustomizationType'
-    has_attached_file :upload
+    has_attached_file :upload, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
     include Rails.application.routes.url_helpers
 
